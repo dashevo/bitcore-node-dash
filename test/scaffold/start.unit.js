@@ -1,11 +1,9 @@
 'use strict';
 
-var should = require('chai').should();
 var EventEmitter = require('events').EventEmitter;
 var path = require('path');
 var sinon = require('sinon');
 var proxyquire = require('proxyquire');
-var start = require('../../lib/scaffold/start');
 
 describe('#start', function() {
   describe('#checkConfigVersion2', function() {
@@ -241,7 +239,7 @@ describe('#start', function() {
         var start = require('../../lib/scaffold/start');
         var log = require('../../lib').log;
         logStub = sandbox.stub(log, 'error');
-        cleanShutdown = sandbox.stub(start, 'cleanShutdown', function() {});
+        cleanShutdown = sandbox.stub(start, 'cleanShutdown').callsFake(function() {});
         exitHandler = require('../../lib/scaffold/start').exitHandler;
       });
 
